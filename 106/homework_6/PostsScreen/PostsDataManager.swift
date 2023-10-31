@@ -42,7 +42,10 @@ class PostsDataManager: NSObject, UITableViewDataSource, UITableViewDelegate, Po
             post = filteredPosts[indexPath.row]
         }
 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.reuseIdentifier, for: indexPath) as? PostTableViewCell else { return UITableViewCell()}
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier:
+                PostTableViewCell.reuseIdentifier, for: indexPath) as? PostTableViewCell
+        else { return UITableViewCell()}
 
         cell.optionsTapped = { [weak self] alertController in
             self?.optionsTapped!(alertController)
@@ -63,7 +66,8 @@ class PostsDataManager: NSObject, UITableViewDataSource, UITableViewDelegate, Po
             switch result {
             case .success(let posts):
                 for post in posts {
-                    self.postsModels.append(PostModel(id: post.id, postImage: post.image, caption: post.caption, date: post.date, isFavorite: post.isFavorite))
+                    self.postsModels.append(PostModel(id: post.id, postImage: post.image, caption: post.caption,
+                        date: post.date, isFavorite: post.isFavorite))
                 }
             case .failure(let error):
                 print("Ошибка получения постов: \(error)")
@@ -73,7 +77,8 @@ class PostsDataManager: NSObject, UITableViewDataSource, UITableViewDelegate, Po
 
     func didDeletePost(postModel: PostModel) {
 
-        profileDataManager.asyncDelete(Post(id: postModel.id, image: postModel.postImage, caption: postModel.caption, date: postModel.caption, isFavorite: postModel.isFavorite), completion: { result in
+        profileDataManager.asyncDelete(Post(id: postModel.id, image: postModel.postImage, caption: postModel.caption,
+            date: postModel.caption, isFavorite: postModel.isFavorite), completion: { result in
             switch result {
             case .success:
                 print("Удаление прошло успешно")
@@ -98,7 +103,8 @@ class PostsDataManager: NSObject, UITableViewDataSource, UITableViewDelegate, Po
                 case .success(let posts):
                     self?.filteredPosts = []
                     for post in posts {
-                        self?.filteredPosts.append(PostModel(id: post.id, postImage: post.image, caption: post.caption, date: post.date, isFavorite: post.isFavorite))
+                        self?.filteredPosts.append(PostModel(id: post.id, postImage: post.image, caption: post.caption,
+                            date: post.date, isFavorite: post.isFavorite))
                     }
                     self?.reloadData!()
                 case .failure(let error):

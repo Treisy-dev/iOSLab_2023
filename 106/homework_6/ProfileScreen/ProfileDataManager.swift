@@ -40,7 +40,10 @@ class ProfileDataManager: NSObject, DataManagerProtocol, UICollectionViewDelegat
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCollectionViewCell.reuseIdentifier, for: indexPath) as? ProfileCollectionViewCell else { return UICollectionViewCell()}
+        guard
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
+                ProfileCollectionViewCell.reuseIdentifier, for: indexPath) as? ProfileCollectionViewCell
+        else { return UICollectionViewCell()}
 
         let posts = syncGetAllPosts()
         cell.configure(with: posts[indexPath.row])
