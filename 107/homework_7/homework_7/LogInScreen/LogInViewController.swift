@@ -51,6 +51,9 @@ class LogInViewController: UIViewController {
         tbController.viewControllers = [UINavigationController(rootViewController: profileViewController),
             UINavigationController(rootViewController: postsViewController)]
 
-        navigationController?.pushViewController(tbController, animated: true)
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            sceneDelegate.window?.rootViewController = tbController
+            sceneDelegate.window?.makeKeyAndVisible()
+        }
     }
 }

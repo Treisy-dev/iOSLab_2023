@@ -52,7 +52,11 @@ class StoryDataManager: NSObject, UICollectionViewDelegate, UICollectionViewData
         stories[LogInDataManager.authUser]?.count ?? 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath)
+        -> CGSize {
         let width = 75.0
         let height = 65.0
         return CGSize(width: width, height: height)
